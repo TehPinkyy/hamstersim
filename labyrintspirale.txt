@@ -1,0 +1,62 @@
+Spiralen Labyrinth
+
+
+|-----------------------|
+|X ->			|
+|___________________	|
+|		   |	|
+|  ____________	   |	|
+|  |	      |	   |	|
+|  |	-------	   |	|
+|  |		   |	|
+|  -----------------	|
+|			|
+|-----------------------|
+
+
+int wandzaeler;
+
+void main() {
+	// zaehler um Abbruchbedingung festzustellen
+	wandzaehler = 0;
+
+	while(wandzaehler != 3) {
+		gehVorNimm();
+		wandzaehler++;
+		dreh();
+	}
+
+}
+
+/*
+	drehe dich nach links, 
+		wenn eine wand da ist, 
+			dann drehe dich um und ueberpruefe ob auch da eine wand ist
+				wenn hier eine wand ist, dann ist der hamster am ende
+				wenn hier keine wand ist, dann gehe wieder gerade aus
+		wenn keine wand da ist, 
+			dann gehe wieder gerade aus
+*/
+void dreh() {
+	dreheLinks();
+	if(vorneFrei()) {
+		wandzaehler = 0;
+		return;
+	} else {
+		wandzaehler++;
+		drehUm();
+		if(vorneFrei()){
+			wandzaehler = 0;
+			return;
+		} else {
+			wandzaehler++;
+			return;
+		}
+	}
+}
+
+// dreht dem hamster um 180 Grad um
+void drehUm() {
+	dreheLinks();
+	dreheLinks();
+}
